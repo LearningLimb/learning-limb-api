@@ -18,4 +18,17 @@ router.get('/', (req, res) => {
     });
 });
 
+router.get('/:id', (req, res) => {
+    Book.findById(req.params.id)
+    .then(book => {
+        res.json(book);
+    })
+    .catch(err => {
+        res.status(502);
+        res.json({
+            error: err
+        });
+    });
+});
+
 module.exports = router;
